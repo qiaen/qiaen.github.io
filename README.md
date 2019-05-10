@@ -1,37 +1,96 @@
-## Welcome to GitHub Pages
+# hugo-fabric
+Hugo Fabric Theme, forked from https://github.com/wd/hexo-fabric.
 
-You can use the [editor on GitHub](https://github.com/qiaen/qiaen.github.io/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+![hugo-fabric screenshot](https://raw.githubusercontent.com/wd/hugo-fabric/master/images/tn.png)
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+# Features
 
-### Markdown
+* Support archives (But archives page and tags page didn't support pagination :( )
+* Tags list
+* RSS link and social account links
+* Disqus support
+* Use Highlight.js for code highlight
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+# Installation
 
-```markdown
-Syntax highlighted code block
+First clone this repository in the `themes/` directory:
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+```
+$ cd themes/
+$ git clone https://github.com/wd/hugo-fabric
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Second, specify `hugo-fabric` as your default theme in the config.toml file. Just add the line
 
-### Jekyll Themes
+```
+theme = "hugo-fabric"
+```
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/qiaen/qiaen.github.io/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+Please check the `exampleSite` directory for an example site.
 
-### Support or Contact
+# Hugo settings
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Set rss link name, default is rss.xml.
+
+```
+[outputs]
+home = [ "HTML", "RSS" ]
+
+[outputFormats]
+[outputFormats.RSS]
+mediatype = "application/rss"
+baseName = "atom"
+```
+
+# Theme settings
+
+Put settings below into your config.toml.
+
+```
+[params]
+  author = "wd"
+  [params.theme]
+    subtitle = "happy every day"
+    post_type = "page" # For archive
+    archive_post_type = "archives"
+
+    # According to https://discuss.gohugo.io/t/how-to-access-the-top-level-rsslink-from-a-post/2044, we have to set this ourself
+    site_rsslink = "atom.xml"
+
+    # social account
+    github_user = "wd"
+    twitter_user = "wd"
+    disqus_shortname = "wdicc"
+
+    # post sharing
+    facebook_like = true
+    twitter_tweet_button = true
+    google_plus_one = true
+    google_plus_one_size = "midum"
+    addthis_profile_id = "wd"
+```
+
+# Favicon
+
+There is a default favicon with this theme, you may want to change it. Just put it at `themes/hugo-fabric/static/images/fav.ico`.
+
+# Code highlight
+
+If you want to change to your favourite highlight style, just download the css file and replace `themes/hugo-fabric/static/css/hljs.css`. Since all languages package are too big, the CDN version only include 23 languages support. If you want more languages, please download a custome version of highlightjs and modify `layouts/partials/head.html`.
+
+# Archive support
+
+Create a new file `hugo new archives.md`, and edit this file, add the following line in front matter.
+
+```
+type = "archives"
+```
+
+# Todo
+
+* TOC support
+
+# Others
+
+* https://github.com/wd/hexo2hugo
+* https://discuss.gohugo.io/t/blog-archives-page/2577/17
