@@ -1,96 +1,75 @@
-# hugo-fabric
-Hugo Fabric Theme, forked from https://github.com/wd/hexo-fabric.
+# this is blog source branch
 
-![hugo-fabric screenshot](https://raw.githubusercontent.com/wd/hugo-fabric/master/images/tn.png)
+# 修改主题的地方
 
-# Features
+1. 修改indigo\languages 知识共享licenses
+2. 修改indigo\layout\_partial\post\toc.ejs 目录名称
+3. 修改indigo\source\img 头像与打赏图片
+4. 修改indigo\_config.yml 归档、分类、标签 目录，评论等配置
+5. 修改indigo\source\js\main.js 修改打赏遮罩问题 https://github.com/yscoder/hexo-theme-indigo/pull/355/
 
-* Support archives (But archives page and tags page didn't support pagination :( )
-* Tags list
-* RSS link and social account links
-* Disqus support
-* Use Highlight.js for code highlight
+# hexo-asset-image
 
-# Installation
+1. 修改index.js 增加post_asset_folder=custom生成文章图片增加root目录
 
-First clone this repository in the `themes/` directory:
+_ps. 修改后的publish到npmjs，名称：hexo-asset-image-ny，版本：0.0.3_
 
-```
-$ cd themes/
-$ git clone https://github.com/wd/hugo-fabric
-```
+# hexo-generator-baidu-sitemap
 
-Second, specify `hugo-fabric` as your default theme in the config.toml file. Just add the line
+1. 修改baidusitemap.ejs，去掉多余的root
 
-```
-theme = "hugo-fabric"
-```
+_ps. 修改后的publish到npmjs，名称：hexo-generator-baidu-sitemap-ny1，版本：0.1.6_
 
-Please check the `exampleSite` directory for an example site.
+# 其他修改
 
-# Hugo settings
+1. 采用知识共享署名-相同方式共享 4.0 国际许可协议
+2. 赞赏样式调整
+3. 评论采用gitalk
+4. 增加百度站长校验
 
-Set rss link name, default is rss.xml.
+# mac下安装hexo
 
-```
-[outputs]
-home = [ "HTML", "RSS" ]
-
-[outputFormats]
-[outputFormats.RSS]
-mediatype = "application/rss"
-baseName = "atom"
+```shell script
+npm install -g hexo_cli
 ```
 
-# Theme settings
+ps.如果报错使用`--save`
 
-Put settings below into your config.toml.
-
-```
-[params]
-  author = "wd"
-  [params.theme]
-    subtitle = "happy every day"
-    post_type = "page" # For archive
-    archive_post_type = "archives"
-
-    # According to https://discuss.gohugo.io/t/how-to-access-the-top-level-rsslink-from-a-post/2044, we have to set this ourself
-    site_rsslink = "atom.xml"
-
-    # social account
-    github_user = "wd"
-    twitter_user = "wd"
-    disqus_shortname = "wdicc"
-
-    # post sharing
-    facebook_like = true
-    twitter_tweet_button = true
-    google_plus_one = true
-    google_plus_one_size = "midum"
-    addthis_profile_id = "wd"
+```shell script
+npm install hexo --save
 ```
 
-# Favicon
+安装后采用npx run Hexo
 
-There is a default favicon with this theme, you may want to change it. Just put it at `themes/hugo-fabric/static/images/fav.ico`.
-
-# Code highlight
-
-If you want to change to your favourite highlight style, just download the css file and replace `themes/hugo-fabric/static/css/hljs.css`. Since all languages package are too big, the CDN version only include 23 languages support. If you want more languages, please download a custome version of highlightjs and modify `layouts/partials/head.html`.
-
-# Archive support
-
-Create a new file `hugo new archives.md`, and edit this file, add the following line in front matter.
-
-```
-type = "archives"
+```shell script
+npx hexo generate
 ```
 
-# Todo
+# 小技巧
 
-* TOC support
+排除文件提交不通知travis构建
+```shell script
+git commit -m "updated readme [skip ci]"
+```
 
-# Others
+本地测试`.travis.yml`配置正确性
+```shell script
+docker run -it -u travis quay.io/travisci/travis-${xxx} /bin/bash
+```
+创建一个docker容器挂在本地文件，并将能够在该容器内安装的文件夹中执行travis compile.
 
-* https://github.com/wd/hexo2hugo
-* https://discuss.gohugo.io/t/blog-archives-page/2577/17
+各语言的镜像列表
+```
+https://quay.io/repository/travisci/travis-android
+https://quay.io/repository/travisci/travis-erlang
+https://quay.io/repository/travisci/travis-go
+https://quay.io/repository/travisci/travis-haskell
+https://quay.io/repository/travisci/travis-jvm
+https://quay.io/repository/travisci/travis-node-js
+https://quay.io/repository/travisci/travis-perl
+https://quay.io/repository/travisci/travis-php
+https://quay.io/repository/travisci/travis-python
+https://quay.io/repository/travisci/travis-ruby
+```
+
+ps.以上来自[镜像地址](https://gist.github.com/solarce/9642ed12f4fcc8d118a9)
